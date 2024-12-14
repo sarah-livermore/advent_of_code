@@ -31,11 +31,18 @@ def file_reader(file):
             diffs = [t-s for s,t in zip(levels, levels[1:])]
             yield diffs
 
-invalid_diffs = 0
+valid_diffs = 0
 for diffs in file_reader('input2.txt'):
-    print('diff in question', diffs)
-    if False in [abs(i)<=3 and abs(i)>0 for i in diffs] or len(set(i<0 for i in diffs)) > 1:
-        print('invalid')
-        invalid_diffs+=1
+    if any(d==0 for d in diffs):
+        continue
+    if len(set(map(lambda x: x>0, diffs)))==1:
+        if all(abs(d)>=1 and abs(d)<=3 for d in diffs):
+            valid_diffs+=1
 
-print('num invalid levels', invalid_diffs)
+print('num valid levels', valid_diffs)
+
+# DAY 2, PART 2
+
+# DAY 3
+
+test_string = "-select()&how()''from()}what()mul(667,142);*when()*/%%+ &mul(139,116),,)mul(665,813)$>-+from()where(),from()mul(589,293))mul(832,177)mul(701,929)~([mul(300,986)from()mul(238,716)/~*~'what()when():}mul(437,789)mul(662,564)*)^,;%<}#'mul(567,346)"
