@@ -44,5 +44,18 @@ print('num valid levels', valid_diffs)
 # DAY 2, PART 2
 
 # DAY 3
+import re
 
 test_string = "-select()&how()''from()}what()mul(667,142);*when()*/%%+ &mul(139,116),,)mul(665,813)$>-+from()where(),from()mul(589,293))mul(832,177)mul(701,929)~([mul(300,986)from()mul(238,716)/~*~'what()when():}mul(437,789)mul(662,564)*)^,;%<}#'mul(567,346)"
+
+with open('input3_mul.txt') as f:
+    muls_string = f.read()
+    muls = re.findall('mul\(\d{1,3},\d{1,3}\)', muls_string)
+
+    sum_of_products = 0
+    for m in muls:
+        numbers = m[4:-1].split(',')
+        product = int(numbers[0])*int(numbers[1])
+        sum_of_products += product
+
+    print('Sum of products: ', sum_of_products)
